@@ -3,9 +3,13 @@
     "version": "1.0.0",
     "description": "backend test",
     "main": "index.js",
+    "repository": {
+        "url": "https://github.com/devbusiness/test-backend_app.git",
+    },
     "keywords": [
         "Typescript",
-        "postgresql"
+        "postgresql",
+        "docker-compose"
     ],
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
