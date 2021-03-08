@@ -1,0 +1,42 @@
+version: '3.3'
+
+services:
+  db_serv:
+    image: 'postgres:9.6.1'
+    container_name: postgres_db
+    restart: on-failure
+    expose:
+      - 5432
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+  api_rest:
+    build: .
+    container_name: backend_service
+    command: 'npm start'
+    restart: on-failure
+    env_file:
+      - .env
+    environment:
+      DB_HOST: db_serv
+      CLOUD_API_KEY: ${CLOUD_API_KEY}
+      CLOUD_API_SECRET: ${CLOUD_API_SECRET}
+      CLOUD_NAME: ${CLOUD_NAME}
+      JWT_SECRET: ${JWT_SECRET}
+      EXPIRE_IN_JWT: ${EXPIRE_IN_JWT}
+      APP_NAME: ${APP_NAME}
+      API_VERSION: ${API_VERSION}
+      PORT: ${PORT}
+      NODE_ENV: ${NODE_ENV}
+    ports:
+      - 8000:${PORT}
+    depends_on:
+      - db_serv
+volumes:
+  pg_data:
+    external: false
