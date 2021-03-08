@@ -4,7 +4,7 @@
     "description": "backend test",
     "main": "index.js",
     "repository": {
-        "url": "https://github.com/devbusiness/test-backend_app.git",
+        "url": "https://github.com/devbusiness/test-backend_app.git"
     },
     "keywords": [
         "Typescript",
